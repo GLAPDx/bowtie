@@ -439,7 +439,7 @@ private:
  * Qsort the set of suffixes whose offsets are in 'bucket'.
  */
 template<typename TStr>
-void KarkkainenBlockwiseSA<TStr>::qsort(EList<TIndexOffU>& bucket) {
+inline void KarkkainenBlockwiseSA<TStr>::qsort(EList<TIndexOffU>& bucket) {
 	const TStr& t = this->text();
 	TIndexOffU *s = &bucket[0];
 	TIndexOffU slen = (TIndexOffU)bucket.size();
@@ -468,7 +468,7 @@ void KarkkainenBlockwiseSA<TStr>::qsort(EList<TIndexOffU>& bucket) {
  * packed means that the array cannot be sorted directly.
  */
 template<>
-void KarkkainenBlockwiseSA<S2bDnaString>::qsort(EList<TIndexOffU>& bucket) {
+inline void KarkkainenBlockwiseSA<S2bDnaString>::qsort(EList<TIndexOffU>& bucket) {
 	const S2bDnaString& t = this->text();
 	TIndexOffU *s = &bucket[0];
 	TIndexOffU slen = (TIndexOffU)bucket.size();

@@ -1535,7 +1535,7 @@ struct SideLocus {
  * of a forward side, print the characters at those positions along
  * with a summary occ[] array.
  */
-void Ebwt::printRangeFw(uint32_t begin, uint32_t end) const {
+inline void Ebwt::printRangeFw(uint32_t begin, uint32_t end) const {
 	assert(isInMemory());
 	uint32_t occ[] = {0, 0, 0, 0};
 	assert_gt(end, begin);
@@ -1557,7 +1557,7 @@ void Ebwt::printRangeFw(uint32_t begin, uint32_t end) const {
  * of a backward side, print the characters at those positions along
  * with a summary occ[] array.
  */
-void Ebwt::printRangeBw(uint32_t begin, uint32_t end) const {
+inline void Ebwt::printRangeBw(uint32_t begin, uint32_t end) const {
 	assert(isInMemory());
 	uint32_t occ[] = {0, 0, 0, 0};
 	assert_gt(end, begin);
@@ -1580,7 +1580,7 @@ void Ebwt::printRangeBw(uint32_t begin, uint32_t end) const {
  * including) the given side index by re-counting the chars and
  * comparing against the embedded occ[] arrays.
  */
-void Ebwt::sanityCheckUpToSide(TIndexOff upToSide) const {
+inline void Ebwt::sanityCheckUpToSide(TIndexOff upToSide) const {
 	assert(isInMemory());
 	TIndexOffU occ[] = {0, 0, 0, 0};
 	ASSERT_ONLY(TIndexOffU occ_save[] = {0, 0});
@@ -1628,7 +1628,7 @@ void Ebwt::sanityCheckUpToSide(TIndexOff upToSide) const {
 /**
  * Sanity-check various pieces of the Ebwt
  */
-void Ebwt::sanityCheckAll(int reverse) const {
+inline void Ebwt::sanityCheckAll(int reverse) const {
 	const EbwtParams& eh = this->_eh;
 	assert(isInMemory());
 	// Check ftab
@@ -2566,7 +2566,7 @@ inline int Ebwt::mapLF1(TIndexOffU& row, const SideLocus& l
  * sorted list of reference fragment ranges t
  */
 
-void Ebwt::joinedToTextOff(TIndexOffU qlen, TIndexOffU off,
+inline void Ebwt::joinedToTextOff(TIndexOffU qlen, TIndexOffU off,
 				 TIndexOffU& tidx,
 				 TIndexOffU& textoff,
 				 TIndexOffU& tlen) const
@@ -2760,7 +2760,7 @@ inline bool Ebwt::reportChaseOne(const BTDnaString& query,
  * to the end of the string.  The result is written to s.  The Ebwt
  * must be in memory.
  */
-void Ebwt::restore(BTRefString& s) const {
+inline void Ebwt::restore(BTRefString& s) const {
 	assert(isInMemory());
 	s.resize(this->_eh._len);
 	TIndexOffU jumps = 0;
@@ -2784,7 +2784,7 @@ void Ebwt::restore(BTRefString& s) const {
  * Check that this Ebwt, when restored via restore(), matches up with
  * the given array of reference sequences.  For sanity checking.
  */
-void Ebwt::checkOrigs(const EList<BTRefString >& os, bool mirror) const
+inline void Ebwt::checkOrigs(const EList<BTRefString >& os, bool mirror) const
 {
 	BTRefString rest;
 	restore(rest);
@@ -2832,7 +2832,7 @@ void Ebwt::checkOrigs(const EList<BTRefString >& os, bool mirror) const
 /**
  * Read an Ebwt from file with given filename.
  */
-void Ebwt::readIntoMemory(
+inline void Ebwt::readIntoMemory(
 	int needEntireRev,
 	bool justHeader,
 	EbwtParams *params,
@@ -3599,7 +3599,7 @@ readEntireReverse(const string& instr) {
  * @param out2 output stream to secondary file
  * @param be   write in big endian?
  */
-void Ebwt::writeFromMemory(bool justHeader,
+inline void Ebwt::writeFromMemory(bool justHeader,
 			   ostream& out1,
 			   ostream& out2) const
 {
@@ -3673,7 +3673,7 @@ void Ebwt::writeFromMemory(bool justHeader,
  * (hopefully) exact copy of this Ebwt.  We then assert that the
  * current Ebwt and the copy match in all of their fields.
  */
-void Ebwt::writeFromMemory(bool justHeader,
+inline void Ebwt::writeFromMemory(bool justHeader,
 			   const string& out1,
 			   const string& out2) const
 {
